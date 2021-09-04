@@ -16,9 +16,8 @@ const reducer = (state, action) => {
         ...state,
         topRated: action.topRated,
         nowPlaying: action.nowPlaying,
-        upComing: action.upComing,
+        upcoming: action.upcoming,
         popular: action.popular,
-        latest: action.latest,
       };
     case SET_LOADING:
       return {
@@ -34,9 +33,8 @@ const initState = {
   loading: true,
   topRated: [],
   nowPlaying: [],
-  upComing: [],
+  upcoming: [],
   popular: [],
-  latest: [],
 };
 
 const Movies = () => {
@@ -51,22 +49,18 @@ const Movies = () => {
         data: { results: nowPlaying },
       } = await movieApi.nowPlaying();
       const {
-        data: { results: upComing },
-      } = await movieApi.upComing();
+        data: { results: upcoming },
+      } = await movieApi.upcoming();
       const {
         data: { results: popular },
       } = await movieApi.popular();
-      const {
-        data: { results: latest },
-      } = await movieApi.latest();
 
       dispatch({
         type: SET_RESULTS,
         topRated,
         nowPlaying,
-        upComing,
+        upcoming,
         popular,
-        latest,
       });
     } catch (error) {
       console.log(error);
@@ -79,8 +73,6 @@ const Movies = () => {
     getData();
   }, []);
 
-  console.log(state.loading);
-
   return state.loading ? (
     <Message message="📡 Loading" />
   ) : (
@@ -91,14 +83,11 @@ const Movies = () => {
       {state.nowPlaying && state.nowPlaying.length > 0 && (
         <Section title="Now Playing" data={state.nowPlaying} type="movie" />
       )}
-      {state.upComing && state.upComing.length > 0 && (
-        <Section title="Up Coming" data={state.upComing} type="movie" />
+      {state.upcoming && state.upcoming.length > 0 && (
+        <Section title="Upcoming" data={state.upcoming} type="movie" />
       )}
       {state.popular && state.popular.length > 0 && (
         <Section title="Popular" data={state.popular} type="movie" />
-      )}
-      {state.latest && state.latest.length > 0 && (
-        <Section title="Latest" data={state.latest} type="movie" />
       )}
     </Container>
   );
