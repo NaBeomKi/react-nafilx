@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import MovieArticle from "./MovieArticle";
+import VideoArticle from "./VideoArticle";
 
 const SectionWrapper = styled.section`
   padding: 2rem;
 `;
 
 const Title = styled.h2`
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  font-size: 2rem;
 `;
 
 const ListContainer = styled.div`
@@ -21,9 +22,9 @@ const Section = ({ title, data, type }) => {
     <SectionWrapper>
       <Title>{title}</Title>
       <ListContainer>
-        {type === "movie"
-          ? data.map((movie) => <MovieArticle key={movie.id} movie={movie} />)
-          : null}
+        {data.map((video) => (
+          <VideoArticle key={video.id} video={video} />
+        ))}
       </ListContainer>
     </SectionWrapper>
   );

@@ -54,8 +54,8 @@ const Text = styled("p")`
   font-size: 0.875rem;
 `;
 
-const MovieArticle = ({ movie }) => {
-  const { backdrop_path, original_title, original_name, overview } = movie;
+const VideoArticle = ({ video }) => {
+  const { backdrop_path, original_title, original_name, overview } = video;
   return (
     <Article>
       <Backdrop
@@ -82,4 +82,4 @@ const MovieArticle = ({ movie }) => {
   );
 };
 
-export default MovieArticle;
+export default VideoArticle;

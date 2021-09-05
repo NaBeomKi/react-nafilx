@@ -18,4 +18,9 @@ export const movieApi = {
   popular: () => api.get("movie/popular"),
 };
 
-export const tvApi = {};
+export const tvApi = {
+  topRated: () => api.get("tv/top_rated"),
+  airingToday: () => api.get("tv/airing_today"),
+  onTheAir: () => api.get("tv/on_the_air"),
+  popular: () => api.get("tv/popular"),
+};
