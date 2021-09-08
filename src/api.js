@@ -16,6 +16,12 @@ export const movieApi = {
   nowPlaying: () => api.get("movie/now_playing"),
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
+  search: (term) =>
+    api.get("search/movie", {
+      params: {
+        query: encodeURIComponent(term),
+      },
+    }),
 };
 
 export const tvApi = {
@@ -23,4 +29,10 @@ export const tvApi = {
   airingToday: () => api.get("tv/airing_today"),
   onTheAir: () => api.get("tv/on_the_air"),
   popular: () => api.get("tv/popular"),
+  search: (term) =>
+    api.get("search/tv", {
+      params: {
+        query: encodeURIComponent(term),
+      },
+    }),
 };

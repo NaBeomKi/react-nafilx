@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 
 const Article = styled("article")`
@@ -54,7 +54,7 @@ const Text = styled("p")`
   font-size: 0.875rem;
 `;
 
-const VideoArticle = ({ video }) => {
+const VideoArticle = memo(({ video }) => {
   const { backdrop_path, original_title, original_name, overview } = video;
   return (
     <Article>
@@ -80,6 +80,6 @@ const VideoArticle = ({ video }) => {
       </InnerContainer>
     </Article>
   );
-};
+});
 
 export default VideoArticle;

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { memo, useEffect, useReducer } from "react";
 import styled from "styled-components";
 import { movieApi } from "../api";
 import Message from "../Components/Message";
@@ -37,7 +37,7 @@ const initState = {
   popular: [],
 };
 
-const Movies = () => {
+const Movies = memo(() => {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const getData = async () => {
@@ -78,19 +78,19 @@ const Movies = () => {
   ) : (
     <Container>
       {state.topRated && state.topRated.length > 0 && (
-        <Section title="Top Rated" data={state.topRated} type="movie" />
+        <Section title="Top Rated" data={state.topRated} />
       )}
       {state.nowPlaying && state.nowPlaying.length > 0 && (
-        <Section title="Now Playing" data={state.nowPlaying} type="movie" />
+        <Section title="Now Playing" data={state.nowPlaying} />
       )}
       {state.upcoming && state.upcoming.length > 0 && (
-        <Section title="Upcoming" data={state.upcoming} type="movie" />
+        <Section title="Upcoming" data={state.upcoming} />
       )}
       {state.popular && state.popular.length > 0 && (
-        <Section title="Popular" data={state.popular} type="movie" />
+        <Section title="Popular" data={state.popular} />
       )}
     </Container>
   );
-};
+});
 
 export default Movies;

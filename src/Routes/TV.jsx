@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { memo, useEffect, useReducer } from "react";
 import styled from "styled-components";
 import { tvApi } from "../api";
 import Message from "../Components/Message";
@@ -37,7 +37,7 @@ const initData = {
   popular: [],
 };
 
-const TV = () => {
+const TV = memo(() => {
   const [state, dispatch] = useReducer(reducer, initData);
 
   const getData = async () => {
@@ -78,19 +78,19 @@ const TV = () => {
   ) : (
     <Container>
       {state.topRated && state.topRated.length > 0 && (
-        <Section title="Top Rated" data={state.topRated} type="tv" />
+        <Section title="Top Rated" data={state.topRated} />
       )}
       {state.airingToday && state.airingToday.length > 0 && (
-        <Section title="Airing To Day" data={state.airingToday} type="tv" />
+        <Section title="Airing To Day" data={state.airingToday} />
       )}
       {state.onTheAir && state.onTheAir.length > 0 && (
-        <Section title="On The Air" data={state.onTheAir} type="tv" />
+        <Section title="On The Air" data={state.onTheAir} />
       )}
       {state.popular && state.popular.length > 0 && (
-        <Section title="Popular" data={state.popular} type="tv" />
+        <Section title="Popular" data={state.popular} />
       )}
     </Container>
   );
-};
+});
 
 export default TV;

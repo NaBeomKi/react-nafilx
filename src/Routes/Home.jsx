@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { memo, useEffect, useReducer } from "react";
 import styled from "styled-components";
 import { movieApi, tvApi } from "../api";
 import Message from "../Components/Message";
@@ -45,7 +45,7 @@ const initState = {
   tvPopular: [],
 };
 
-const Home = () => {
+const Home = memo(() => {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const getData = async () => {
@@ -103,51 +103,31 @@ const Home = () => {
   ) : (
     <Container>
       {state.movieTopRated && state.movieTopRated.length > 0 && (
-        <Section
-          title="Movie: Top Rated"
-          data={state.movieTopRated}
-          type="movie"
-        />
+        <Section title="Movie: Top Rated" data={state.movieTopRated} />
       )}
       {state.movieNowPlaying && state.movieNowPlaying.length > 0 && (
-        <Section
-          title="Movie: Now Playing"
-          data={state.movieNowPlaying}
-          type="movie"
-        />
+        <Section title="Movie: Now Playing" data={state.movieNowPlaying} />
       )}
       {state.movieUpcoming && state.movieUpcoming.length > 0 && (
-        <Section
-          title="Movie: Upcoming"
-          data={state.movieUpcoming}
-          type="movie"
-        />
+        <Section title="Movie: Upcoming" data={state.movieUpcoming} />
       )}
       {state.moviePopular && state.moviePopular.length > 0 && (
-        <Section
-          title="Movie: Popular"
-          data={state.moviePopular}
-          type="movie"
-        />
+        <Section title="Movie: Popular" data={state.moviePopular} />
       )}
       {state.tvTopRated && state.tvTopRated.length > 0 && (
-        <Section title="TV: Top Rated" data={state.tvTopRated} type="tv" />
+        <Section title="TV: Top Rated" data={state.tvTopRated} />
       )}
       {state.tvAiringToday && state.tvAiringToday.length > 0 && (
-        <Section
-          title="TV: Airing To Day"
-          data={state.tvAiringToday}
-          type="tv"
-        />
+        <Section title="TV: Airing To Day" data={state.tvAiringToday} />
       )}
       {state.tvOnTheAir && state.tvOnTheAir.length > 0 && (
-        <Section title="TV: On The Air" data={state.tvOnTheAir} type="tv" />
+        <Section title="TV: On The Air" data={state.tvOnTheAir} />
       )}
       {state.tvPopular && state.tvPopular.length > 0 && (
-        <Section title="TV: Popular" data={state.tvPopular} type="tv" />
+        <Section title="TV: Popular" data={state.tvPopular} />
       )}
     </Container>
   );
-};
+});
 
 export default Home;

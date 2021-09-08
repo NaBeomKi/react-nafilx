@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import VideoArticle from "./VideoArticle";
 
@@ -17,7 +17,7 @@ const ListContainer = styled.div`
   gap: 10px;
 `;
 
-const Section = ({ title, data, type }) => {
+const Section = memo(({ title, data }) => {
   return (
     <SectionWrapper>
       <Title>{title}</Title>
@@ -28,6 +28,6 @@ const Section = ({ title, data, type }) => {
       </ListContainer>
     </SectionWrapper>
   );
-};
+});
 
 export default Section;
