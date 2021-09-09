@@ -51,18 +51,44 @@ const Title = styled("h3")`
 `;
 
 const Text = styled("p")`
+  margin-bottom: 0.625rem;
   font-size: 0.875rem;
 `;
 
+const DateAndRatingContainer = styled("div")`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Date = styled("span")`
+  font-size: 0.125rem;
+  opacity: 0.7;
+`;
+
+const Rating = styled("span")`
+  font-size: 0.125rem;
+`;
+
 const VideoArticle = memo(({ video }) => {
-  const { backdrop_path, original_title, original_name, overview } = video;
+  const {
+    backdrop_path,
+    original_title,
+    original_name,
+    overview,
+    release_date,
+    first_air_date,
+    vote_average,
+  } = video;
+
+  console.log(require("../assets/404.png"));
+
   return (
     <Article>
       <Backdrop
         src={
           backdrop_path
             ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-            : "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nnx8NDA0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            : require("../assets/404.png").default
         }
       />
       <InnerContainer>
@@ -70,12 +96,16 @@ const VideoArticle = memo(({ video }) => {
           src={
             backdrop_path
               ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-              : "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nnx8NDA0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              : require("../assets/404.png").default
           }
         />
         <InfoContainer>
           <Title>{original_title ? original_title : original_name}</Title>
           <Text>{overview.substring(0, 180)}...</Text>
+          <DateAndRatingContainer>
+            <Date>{release_date ? release_date : first_air_date}</Date>
+            <Rating>⭐️ {vote_average}/10</Rating>
+          </DateAndRatingContainer>
         </InfoContainer>
       </InnerContainer>
     </Article>

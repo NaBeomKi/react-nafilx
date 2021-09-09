@@ -33,7 +33,6 @@ const Search = memo(() => {
       const {
         data: { results: showsData },
       } = await tvApi.search(term);
-      console.log(moviesData, showsData);
       setMovies(moviesData);
       setShows(showsData);
     } catch (error) {
