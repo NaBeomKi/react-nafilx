@@ -45,11 +45,11 @@ const Header = withRouter((props) => {
       </StyledLink>
       <nav>
         <ListContainer>
-          <List current={pathname === "/movies"}>
+          <List current={pathname.includes("/movies")}>
             <StyledLink to="/movies">Movies</StyledLink>
           </List>
-          <List current={pathname === "/tv"}>
-            <StyledLink to="/tv">TV</StyledLink>
+          <List current={pathname.includes("/shows")}>
+            <StyledLink to="/shows">TV</StyledLink>
           </List>
           <List current={pathname === "/search"}>
             <StyledLink to="/search">Search</StyledLink>

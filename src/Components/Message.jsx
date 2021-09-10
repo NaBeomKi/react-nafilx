@@ -5,7 +5,7 @@ const MessageWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: calc(100vh - 3.5rem);
   font-size: 5vw;
 `;
 

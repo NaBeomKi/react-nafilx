@@ -78,16 +78,16 @@ const Movies = memo(() => {
   ) : (
     <Container>
       {state.topRated && state.topRated.length > 0 && (
-        <Section title="Top Rated" data={state.topRated} />
+        <Section title="Top Rated" data={state.topRated} type="movies" />
       )}
       {state.nowPlaying && state.nowPlaying.length > 0 && (
-        <Section title="Now Playing" data={state.nowPlaying} />
+        <Section title="Now Playing" data={state.nowPlaying} type="movies" />
       )}
       {state.upcoming && state.upcoming.length > 0 && (
-        <Section title="Upcoming" data={state.upcoming} />
+        <Section title="Upcoming" data={state.upcoming} type="movies" />
       )}
       {state.popular && state.popular.length > 0 && (
-        <Section title="Popular" data={state.popular} />
+        <Section title="Popular" data={state.popular} type="movies" />
       )}
     </Container>
   );

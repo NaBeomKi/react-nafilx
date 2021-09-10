@@ -15,15 +15,23 @@ const ListContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const Section = memo(({ title, data }) => {
+const Section = memo(({ title, data, type }) => {
   return (
     <SectionWrapper>
       <Title>{title}</Title>
       <ListContainer>
         {data.map((video) => (
-          <VideoArticle key={video.id} video={video} />
+          <VideoArticle key={video.id} video={video} type={type} />
         ))}
       </ListContainer>
     </SectionWrapper>

@@ -78,16 +78,16 @@ const TV = memo(() => {
   ) : (
     <Container>
       {state.topRated && state.topRated.length > 0 && (
-        <Section title="Top Rated" data={state.topRated} />
+        <Section title="Top Rated" data={state.topRated} type="shows" />
       )}
       {state.airingToday && state.airingToday.length > 0 && (
-        <Section title="Airing To Day" data={state.airingToday} />
+        <Section title="Airing To Day" data={state.airingToday} type="shows" />
       )}
       {state.onTheAir && state.onTheAir.length > 0 && (
-        <Section title="On The Air" data={state.onTheAir} />
+        <Section title="On The Air" data={state.onTheAir} type="shows" />
       )}
       {state.popular && state.popular.length > 0 && (
-        <Section title="Popular" data={state.popular} />
+        <Section title="Popular" data={state.popular} type="shows" />
       )}
     </Container>
   );

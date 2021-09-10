@@ -103,28 +103,48 @@ const Home = memo(() => {
   ) : (
     <Container>
       {state.movieTopRated && state.movieTopRated.length > 0 && (
-        <Section title="Movie: Top Rated" data={state.movieTopRated} />
+        <Section
+          title="Movie: Top Rated"
+          data={state.movieTopRated}
+          type="movies"
+        />
       )}
       {state.movieNowPlaying && state.movieNowPlaying.length > 0 && (
-        <Section title="Movie: Now Playing" data={state.movieNowPlaying} />
+        <Section
+          title="Movie: Now Playing"
+          data={state.movieNowPlaying}
+          type="movies"
+        />
       )}
       {state.movieUpcoming && state.movieUpcoming.length > 0 && (
-        <Section title="Movie: Upcoming" data={state.movieUpcoming} />
+        <Section
+          title="Movie: Upcoming"
+          data={state.movieUpcoming}
+          type="movies"
+        />
       )}
       {state.moviePopular && state.moviePopular.length > 0 && (
-        <Section title="Movie: Popular" data={state.moviePopular} />
+        <Section
+          title="Movie: Popular"
+          data={state.moviePopular}
+          type="movies"
+        />
       )}
       {state.tvTopRated && state.tvTopRated.length > 0 && (
-        <Section title="TV: Top Rated" data={state.tvTopRated} />
+        <Section title="TV: Top Rated" data={state.tvTopRated} type="shows" />
       )}
       {state.tvAiringToday && state.tvAiringToday.length > 0 && (
-        <Section title="TV: Airing To Day" data={state.tvAiringToday} />
+        <Section
+          title="TV: Airing To Day"
+          data={state.tvAiringToday}
+          type="shows"
+        />
       )}
       {state.tvOnTheAir && state.tvOnTheAir.length > 0 && (
-        <Section title="TV: On The Air" data={state.tvOnTheAir} />
+        <Section title="TV: On The Air" data={state.tvOnTheAir} type="shows" />
       )}
       {state.tvPopular && state.tvPopular.length > 0 && (
-        <Section title="TV: Popular" data={state.tvPopular} />
+        <Section title="TV: Popular" data={state.tvPopular} type="shows" />
       )}
     </Container>
   );

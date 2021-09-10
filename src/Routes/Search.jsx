@@ -68,10 +68,10 @@ const Search = memo(() => {
       ) : (
         <>
           {movies && movies.length > 0 && (
-            <Section title="Movies" data={movies} />
+            <Section title="Movies" data={movies} type="movies" />
           )}
           {shows && shows.length > 0 && (
-            <Section title="TV Shows" data={shows} />
+            <Section title="TV Shows" data={shows} type="shows" />
           )}
         </>
       )}

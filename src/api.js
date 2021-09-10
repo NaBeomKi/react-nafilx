@@ -19,6 +19,12 @@ export const movieApi = {
         query: encodeURIComponent(term),
       },
     }),
+  detail: (id) =>
+    api.get(`movie/${id}`, {
+      params: {
+        append_to_response: "videos",
+      },
+    }),
 };
 
 export const tvApi = {
@@ -30,6 +36,12 @@ export const tvApi = {
     api.get("search/tv", {
       params: {
         query: encodeURIComponent(term),
+      },
+    }),
+  detail: (id) =>
+    api.get(`tv/${id}`, {
+      params: {
+        append_to_response: "videos",
       },
     }),
 };

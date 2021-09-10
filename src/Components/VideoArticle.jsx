@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Article = styled("article")`
@@ -69,8 +70,9 @@ const Rating = styled("span")`
   font-size: 0.125rem;
 `;
 
-const VideoArticle = memo(({ video }) => {
+const VideoArticle = memo(({ video, type }) => {
   const {
+    id,
     backdrop_path,
     original_title,
     original_name,
@@ -78,20 +80,12 @@ const VideoArticle = memo(({ video }) => {
     release_date,
     first_air_date,
     vote_average,
+    vote_count,
   } = video;
-
-  console.log(require("../assets/404.png"));
 
   return (
     <Article>
-      <Backdrop
-        src={
-          backdrop_path
-            ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-            : require("../assets/404.png").default
-        }
-      />
-      <InnerContainer>
+      <Link to={`/${type}/${id}`}>
         <Backdrop
           src={
             backdrop_path
@@ -99,15 +93,26 @@ const VideoArticle = memo(({ video }) => {
               : require("../assets/404.png").default
           }
         />
-        <InfoContainer>
-          <Title>{original_title ? original_title : original_name}</Title>
-          <Text>{overview.substring(0, 180)}...</Text>
-          <DateAndRatingContainer>
-            <Date>{release_date ? release_date : first_air_date}</Date>
-            <Rating>⭐️ {vote_average}/10</Rating>
-          </DateAndRatingContainer>
-        </InfoContainer>
-      </InnerContainer>
+        <InnerContainer>
+          <Backdrop
+            src={
+              backdrop_path
+                ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+                : require("../assets/404.png").default
+            }
+          />
+          <InfoContainer>
+            <Title>{original_title ? original_title : original_name}</Title>
+            <Text>{overview.substring(0, 180)}...</Text>
+            <DateAndRatingContainer>
+              <Date>{release_date ? release_date : first_air_date}</Date>
+              <Rating>
+                ⭐️ {vote_average}/10 ({vote_count})
+              </Rating>
+            </DateAndRatingContainer>
+          </InfoContainer>
+        </InnerContainer>
+      </Link>
     </Article>
   );
 });
