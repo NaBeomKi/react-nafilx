@@ -67,6 +67,7 @@ const Divider = styled.span`
 
 const Overview = styled.p`
   margin-bottom: 2rem;
+  max-width: 50rem;
   line-height: 1.4;
   opacity: 0.8;
   font-size: 1rem;
@@ -109,14 +110,15 @@ const Overview = styled.p`
 const Detail = memo((props) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
-  const {
-    match: {
-      params: { id },
-      path,
-    },
-  } = props;
 
   const getData = async () => {
+    const {
+      match: {
+        params: { id },
+        path,
+      },
+    } = props;
+
     let result = null;
     try {
       if (path.split("/")[1] === "movies") {
@@ -139,7 +141,6 @@ const Detail = memo((props) => {
   // console.log(data);
   // console.log(data.videos);
   const {
-    id: videoId,
     backdrop_path,
     poster_path,
     original_title,
@@ -149,8 +150,8 @@ const Detail = memo((props) => {
     episode_run_time,
     genres,
     spoken_languages,
-    production_companies,
-    production_countries,
+    // production_companies,
+    // production_countries,
     homepage,
     vote_average,
     vote_count,
@@ -212,7 +213,9 @@ const Detail = memo((props) => {
               ))}
           </ItemContainer>
           <Overview>{overview}</Overview>
-          <DetailRoute id={videoId} type={path.split("/")[1]} />
+          {/*  */}
+          <DetailRoute />
+          {/*  */}
           {/* <ListSection>
             <ListArticle>
               <ListTitle>Production Companies</ListTitle>
