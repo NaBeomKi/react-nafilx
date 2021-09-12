@@ -1,13 +1,11 @@
 import React, { memo } from "react";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  withRouter,
-} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import Companies from "../Routes/Companies";
+
+const COMPANIES = "companies";
+const COUNTRIES = "countries";
+const TRAILERS = "trailers";
 
 const Header = styled.header`
   margin-bottom: 1rem;
@@ -27,77 +25,41 @@ const Li = styled.li`
   }
 `;
 
-const DetailHeader = withRouter((props) => {
-  const {
-    location: { search },
-    history: { push },
-  } = props;
-  const urlSearchParams = new URLSearchParams(search.slice(1));
-  const tab = urlSearchParams.get("tab");
-  console.log(props);
-
-  const handleBtnClick = (value) => () => {
-    push({ search: `?tab=${value}` });
-  };
-
-  const handleBtnClick2 = (value) => () => {
-    push({ search: `?lalalal=${value}` });
-  };
-
+const DetailHeader = ({ url, tab }) => {
   return (
     <Header>
       <Ul>
-        <Li current={tab === "companies"}>
-          {/* <Link to={`?tab=companies`}>Production Companies</Link> */}
-          {/* <Link to="/movies/632632/companies">Production Companies</Link> */}
-          <button onClick={handleBtnClick("companies")}>
-            Production Companies
-          </button>
+        <Li current={tab === COMPANIES}>
+          <Link to={`${url}?tab=companies`}>Production Companies</Link>
         </Li>
-        <Li current={tab === "countries"}>
-          {/* <Link to={`?tab=countries`}>Production Countries</Link> */}
-          <button onClick={handleBtnClick("countries")}>
-            Production Companies
-          </button>
+        <Li current={tab === COUNTRIES}>
+          <Link to={`${url}?tab=countries`}>Production Countries</Link>
         </Li>
-        <Li current={tab === "trailers"}>
-          {/* <Link to={`?tab=trailers`}>Trailers</Link> */}
-          <button onClick={handleBtnClick2("trailers")}>
-            Production Companies
-          </button>
+        <Li current={tab === TRAILERS}>
+          <Link to={`${url}?tab=trailers`}>Trailers</Link>
         </Li>
       </Ul>
     </Header>
   );
-});
+};
 
-const DetailRoute = memo(() => {
-  return (
-    <>
-      <Router>
-        <DetailHeader />
-        <Switch>
-          {/* <Route
-            path={["/movies/:id?tab=companies", "/shows/:id?tab=companies"]}
-            render={() => <Companies />}
-          /> */}
-          <Route
-            path={["/movies/:id/companies", "/shows/:id/companies"]}
-            render={() => <Companies />}
-          />
-          <Route
-            path={["/movies/:id?tab=countries", "/shows/:id?tab=countries"]}
-            render={() => <Companies />}
-            exact
-          />
-          <Route
-            path={["/movies/:id?tab=trailers", "/shows/:id?tab=trailers"]}
-            render={() => <Companies />}
-          />
-        </Switch>
-      </Router>
-    </>
-  );
-});
+const DetailRoute = withRouter(
+  memo((props) => {
+    const {
+      location: { pathname, search },
+    } = props;
+    const urlSearchParams = new URLSearchParams(search.slice(1));
+    const tab = urlSearchParams.get("tab");
+
+    return (
+      <>
+        <DetailHeader url={pathname} tab={tab} />
+        {tab && tab === COMPANIES && <div>companies</div>}
+        {tab && tab === COUNTRIES && <div>COUNTRIES</div>}
+        {tab && tab === TRAILERS && <div>TRAILERS</div>}
+      </>
+    );
+  })
+);
 
 export default DetailRoute;

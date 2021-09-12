@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { movieApi, tvApi } from "../api";
 import DetailRoute from "../Components/DetailRoute";
@@ -111,7 +111,7 @@ const Detail = memo((props) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     const {
       match: {
         params: { id },
@@ -131,11 +131,11 @@ const Detail = memo((props) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [props]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   // console.log(props);
   // console.log(data);
