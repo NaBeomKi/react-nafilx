@@ -73,40 +73,6 @@ const Overview = styled.p`
   font-size: 1rem;
 `;
 
-// const ListSection = styled.section`
-//   display: flex;
-//   margin-bottom: 1.5rem;
-//   &:last-child {
-//     margin-bottom: 0;
-//   }
-// `;
-
-// const ListArticle = styled.article`
-//   margin-right: 1rem;
-//   &:last-child {
-//     margin-right: 0;
-//   }
-// `;
-
-// const ListTitle = styled.h3`
-//   margin-bottom: 0.5rem;
-//   font-size: 1rem;
-// `;
-
-// const Lists = styled.ul``;
-
-// const List = styled.li`
-//   margin-bottom: 0.25rem;
-//   font-size: 0.875rem;
-//   &:last-child {
-//     margin-bottom: 0;
-//   }
-// `;
-
-// const CompanyLogo = styled.img`
-//   width: 50px;
-// `;
-
 const Detail = memo((props) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
@@ -137,9 +103,6 @@ const Detail = memo((props) => {
     getData();
   }, [getData]);
 
-  // console.log(props);
-  // console.log(data);
-  // console.log(data.videos);
   const {
     backdrop_path,
     poster_path,
@@ -150,8 +113,8 @@ const Detail = memo((props) => {
     episode_run_time,
     genres,
     spoken_languages,
-    // production_companies,
-    // production_countries,
+    production_companies,
+    production_countries,
     homepage,
     vote_average,
     vote_count,
@@ -213,39 +176,11 @@ const Detail = memo((props) => {
               ))}
           </ItemContainer>
           <Overview>{overview}</Overview>
-          {/*  */}
-          <DetailRoute />
-          {/*  */}
-          {/* <ListSection>
-            <ListArticle>
-              <ListTitle>Production Companies</ListTitle>
-              <Lists>
-                {production_companies.map((company) => (
-                  <List key={company.id}>
-                    <CompanyLogo
-                      src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
-                      alt={company.name}
-                      title={company.name}
-                    />
-                  </List>
-                ))}
-              </Lists>
-            </ListArticle>
-            <ListArticle>
-              <ListTitle>Production Countries</ListTitle>
-              <Lists>
-                {production_countries.map((country) => (
-                  <List key={country.iso_3166_1}>
-                    <img
-                      src={`https://www.countryflags.io/${country.iso_3166_1}/shiny/32.png`}
-                      alt={country.name}
-                      title={country.name}
-                    />
-                  </List>
-                ))}
-              </Lists>
-            </ListArticle>
-          </ListSection> */}
+          <DetailRoute
+            companies={production_companies}
+            countries={production_countries}
+            trailers={data.videos.results}
+          />
         </InfoContainer>
       </Container>
     </Wrapper>

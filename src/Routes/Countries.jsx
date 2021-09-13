@@ -10,19 +10,15 @@ const List = styled.li`
   }
 `;
 
-const CompanyLogo = styled.img`
-  width: 100px;
-`;
-
-const Companies = memo(({ companies }) => {
+const Countries = memo(({ countries }) => {
   return (
     <DetailTabSection>
-      {companies.map((company) => (
-        <List key={company.id}>
-          <CompanyLogo
-            src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
-            alt={company.name}
-            title={company.name}
+      {countries.map((country) => (
+        <List key={country.iso_3166_1}>
+          <img
+            src={`https://www.countryflags.io/${country.iso_3166_1}/shiny/64.png`}
+            alt={country.name}
+            title={country.name}
           />
         </List>
       ))}
@@ -30,4 +26,4 @@ const Companies = memo(({ companies }) => {
   );
 });
 
-export default Companies;
+export default Countries;

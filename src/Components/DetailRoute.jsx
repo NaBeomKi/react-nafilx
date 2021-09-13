@@ -2,6 +2,8 @@ import React, { memo } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import Companies from "../Routes/Companies";
+import Countries from "../Routes/Countries";
+import Trailers from "../Routes/Trailers";
 
 const COMPANIES = "companies";
 const COUNTRIES = "countries";
@@ -13,16 +15,12 @@ const Header = styled.header`
 
 const Ul = styled.ul`
   display: flex;
+  gap: 0.625rem;
 `;
 
 const Li = styled.li`
-  margin-right: 0.625rem;
   color: ${(props) => (props.current ? "#f1c40f" : "#fff")};
   font-size: 1rem;
-
-  &:last-child {
-    margin-right: 0;
-  }
 `;
 
 const DetailHeader = ({ url, tab }) => {
@@ -54,9 +52,9 @@ const DetailRoute = withRouter(
     return (
       <>
         <DetailHeader url={pathname} tab={tab} />
-        {tab && tab === COMPANIES && <div>companies</div>}
-        {tab && tab === COUNTRIES && <div>COUNTRIES</div>}
-        {tab && tab === TRAILERS && <div>TRAILERS</div>}
+        {tab && tab === COMPANIES && <Companies companies={props.companies} />}
+        {tab && tab === COUNTRIES && <Countries countries={props.countries} />}
+        {tab && tab === TRAILERS && <Trailers trailers={props.trailers} />}
       </>
     );
   })
