@@ -41,7 +41,7 @@ const DetailHeader = ({ url, tab }) => {
   );
 };
 
-const DetailRoute = withRouter(
+const DetailTab = withRouter(
   memo((props) => {
     const {
       location: { pathname, search },
@@ -52,12 +52,12 @@ const DetailRoute = withRouter(
     return (
       <>
         <DetailHeader url={pathname} tab={tab} />
-        {tab && tab === COMPANIES && <Companies companies={props.companies} />}
-        {tab && tab === COUNTRIES && <Countries countries={props.countries} />}
-        {tab && tab === TRAILERS && <Trailers trailers={props.trailers} />}
+        {tab && tab === COMPANIES && <Companies />}
+        {tab && tab === COUNTRIES && <Countries />}
+        {tab && tab === TRAILERS && <Trailers />}
       </>
     );
   })
 );
 
-export default DetailRoute;
+export default DetailTab;

@@ -1,6 +1,7 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import styled from "styled-components";
-import DetailTabSection from "../Components/DetailTabSection";
+import DetailTabContent from "../Components/DetailTabContent";
+import { DetailTabContext } from "../Contexts/DetailTabContext";
 
 const List = styled.li`
   margin-bottom: 0.25rem;
@@ -14,19 +15,24 @@ const CompanyLogo = styled.img`
   width: 100px;
 `;
 
-const Companies = memo(({ companies }) => {
+const Companies = memo(() => {
+  const { companies } = useContext(DetailTabContext);
   return (
-    <DetailTabSection>
-      {companies.map((company) => (
-        <List key={company.id}>
-          <CompanyLogo
-            src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
-            alt={company.name}
-            title={company.name}
-          />
-        </List>
-      ))}
-    </DetailTabSection>
+    <DetailTabContent>
+      {companies.length ? (
+        companies.map((company) => (
+          <List key={company.id}>
+            <CompanyLogo
+              src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
+              alt={company.name}
+              title={company.name}
+            />
+          </List>
+        ))
+      ) : (
+        <List>No Result</List>
+      )}
+    </DetailTabContent>
   );
 });
 

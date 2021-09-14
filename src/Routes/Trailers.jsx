@@ -1,6 +1,7 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import styled from "styled-components";
-import DetailTabSection from "../Components/DetailTabSection";
+import DetailTabContent from "../Components/DetailTabContent";
+import { DetailTabContext } from "../Contexts/DetailTabContext";
 
 const List = styled.li`
   margin-bottom: 0.25rem;
@@ -12,21 +13,26 @@ const List = styled.li`
 
 const Video = styled.iframe``;
 
-const Trailers = memo(({ trailers }) => {
+const Trailers = memo(() => {
+  const { trailers } = useContext(DetailTabContext);
   return (
-    <DetailTabSection>
-      {trailers.map((trailer) => (
-        <List key={trailer.id}>
-          <Video
-            key={trailer.key}
-            src={`https://www.youtube.com/embed/${trailer.key}`}
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          />
-        </List>
-      ))}
-    </DetailTabSection>
+    <DetailTabContent>
+      {trailers.length ? (
+        trailers.map((trailer) => (
+          <List key={trailer.id}>
+            <Video
+              key={trailer.key}
+              src={`https://www.youtube.com/embed/${trailer.key}`}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
+          </List>
+        ))
+      ) : (
+        <List>No Result</List>
+      )}
+    </DetailTabContent>
   );
 });
 

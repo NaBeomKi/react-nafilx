@@ -11,12 +11,13 @@ const ListSection = styled.section`
 const Lists = styled.ul`
   overflow-y: auto;
   display: flex;
+  align-items: center;
   gap: 0.625rem;
   flex-wrap: wrap;
-  max-height: 31.25rem;
+  max-height: 25rem;
 `;
 
-const DetailTabSection = ({ children }) => {
+const DetailTabContent = ({ children }) => {
   return (
     <ListSection>
       <Lists>{children}</Lists>
@@ -24,4 +25,4 @@ const DetailTabSection = ({ children }) => {
   );
 };
 
-export default DetailTabSection;
+export default DetailTabContent;

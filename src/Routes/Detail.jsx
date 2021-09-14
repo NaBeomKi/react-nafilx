@@ -1,8 +1,9 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { movieApi, tvApi } from "../api";
-import DetailRoute from "../Components/DetailRoute";
+import DetailTab from "../Components/DetailTab";
 import Message from "../Components/Message";
+import DetailContext from "../Contexts/DetailTabContext";
 
 const Wrapper = styled.div`
   display: flex;
@@ -176,11 +177,19 @@ const Detail = memo((props) => {
               ))}
           </ItemContainer>
           <Overview>{overview}</Overview>
-          <DetailRoute
-            companies={production_companies}
-            countries={production_countries}
-            trailers={data.videos.results}
-          />
+          <DetailContext
+            value={{
+              companies: production_companies,
+              countries: production_countries,
+              trailers: data.videos.results,
+            }}
+          >
+            <DetailTab
+            // companies={production_companies}
+            // countries={production_countries}
+            // trailers={data.videos.results}
+            />
+          </DetailContext>
         </InfoContainer>
       </Container>
     </Wrapper>
