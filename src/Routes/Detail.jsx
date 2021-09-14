@@ -184,11 +184,7 @@ const Detail = memo((props) => {
               trailers: data.videos.results,
             }}
           >
-            <DetailTab
-            // companies={production_companies}
-            // countries={production_countries}
-            // trailers={data.videos.results}
-            />
+            <DetailTab />
           </DetailContext>
         </InfoContainer>
       </Container>

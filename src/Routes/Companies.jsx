@@ -1,6 +1,7 @@
 import React, { memo, useContext } from "react";
 import styled from "styled-components";
 import DetailTabContent from "../Components/DetailTabContent";
+import Message from "../Components/Message";
 import { DetailTabContext } from "../Contexts/DetailTabContext";
 
 const List = styled.li`
@@ -17,22 +18,20 @@ const CompanyLogo = styled.img`
 
 const Companies = memo(() => {
   const { companies } = useContext(DetailTabContext);
-  return (
+  return companies.length ? (
     <DetailTabContent>
-      {companies.length ? (
-        companies.map((company) => (
-          <List key={company.id}>
-            <CompanyLogo
-              src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
-              alt={company.name}
-              title={company.name}
-            />
-          </List>
-        ))
-      ) : (
-        <List>No Result</List>
-      )}
+      {companies.map((company) => (
+        <List key={company.id}>
+          <CompanyLogo
+            src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
+            alt={company.name}
+            title={company.name}
+          />
+        </List>
+      ))}
     </DetailTabContent>
+  ) : (
+    <Message message="No result" />
   );
 });
 

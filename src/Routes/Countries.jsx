@@ -1,6 +1,7 @@
 import React, { memo, useContext } from "react";
 import styled from "styled-components";
 import DetailTabContent from "../Components/DetailTabContent";
+import Message from "../Components/Message";
 import { DetailTabContext } from "../Contexts/DetailTabContext";
 
 const List = styled.li`
@@ -13,22 +14,20 @@ const List = styled.li`
 
 const Countries = memo(() => {
   const { countries } = useContext(DetailTabContext);
-  return (
+  return countries.length ? (
     <DetailTabContent>
-      {countries.length ? (
-        countries.map((country) => (
-          <List key={country.iso_3166_1}>
-            <img
-              src={`https://www.countryflags.io/${country.iso_3166_1}/shiny/64.png`}
-              alt={country.name}
-              title={country.name}
-            />
-          </List>
-        ))
-      ) : (
-        <List>No Result</List>
-      )}
+      {countries.map((country) => (
+        <List key={country.iso_3166_1}>
+          <img
+            src={`https://www.countryflags.io/${country.iso_3166_1}/shiny/64.png`}
+            alt={country.name}
+            title={country.name}
+          />
+        </List>
+      ))}
     </DetailTabContent>
+  ) : (
+    <Message message="No result" />
   );
 });
 
