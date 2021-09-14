@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useReducer } from "react";
+import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { tvApi } from "../api";
 import Message from "../Components/Message";
@@ -73,23 +74,32 @@ const TV = memo(() => {
     getData();
   }, []);
 
-  return state.loading ? (
-    <Message message="📡 Loading" />
-  ) : (
-    <Container>
-      {state.topRated && state.topRated.length > 0 && (
-        <Section title="Top Rated" data={state.topRated} type="shows" />
+  return (
+    <>
+      <Helmet title="TV Shows | Naflix" />
+      {state.loading ? (
+        <Message message="📡 Loading" />
+      ) : (
+        <Container>
+          {state.topRated && state.topRated.length > 0 && (
+            <Section title="Top Rated" data={state.topRated} type="shows" />
+          )}
+          {state.airingToday && state.airingToday.length > 0 && (
+            <Section
+              title="Airing To Day"
+              data={state.airingToday}
+              type="shows"
+            />
+          )}
+          {state.onTheAir && state.onTheAir.length > 0 && (
+            <Section title="On The Air" data={state.onTheAir} type="shows" />
+          )}
+          {state.popular && state.popular.length > 0 && (
+            <Section title="Popular" data={state.popular} type="shows" />
+          )}
+        </Container>
       )}
-      {state.airingToday && state.airingToday.length > 0 && (
-        <Section title="Airing To Day" data={state.airingToday} type="shows" />
-      )}
-      {state.onTheAir && state.onTheAir.length > 0 && (
-        <Section title="On The Air" data={state.onTheAir} type="shows" />
-      )}
-      {state.popular && state.popular.length > 0 && (
-        <Section title="Popular" data={state.popular} type="shows" />
-      )}
-    </Container>
+    </>
   );
 });
 

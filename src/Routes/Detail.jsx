@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { movieApi, tvApi } from "../api";
 import DetailTab from "../Components/DetailTab";
@@ -125,9 +126,15 @@ const Detail = memo((props) => {
   } = data;
 
   return loading ? (
-    <Message message="📡 Loading" />
+    <>
+      <Helmet title="Loading | Naflix" />
+      <Message message="📡 Loading" />
+    </>
   ) : (
     <Wrapper bg={backdrop_path}>
+      <Helmet
+        title={`${original_title ? original_title : original_name} | Naflix`}
+      />
       <Container>
         <Poster
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}

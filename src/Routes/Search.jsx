@@ -1,4 +1,5 @@
 import React, { memo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { movieApi, tvApi } from "../api";
 import Message from "../Components/Message";
@@ -52,30 +53,33 @@ const Search = memo(() => {
   };
 
   return (
-    <Container>
-      <div>
-        <Form onSubmit={onSubmitForm}>
-          <Input
-            type="text"
-            value={term}
-            onChange={onChangeInput}
-            placeholder="Search by term"
-          />
-        </Form>
-      </div>
-      {loading ? (
-        <Message message="📡 Loading" />
-      ) : (
-        <>
-          {movies && movies.length > 0 && (
-            <Section title="Movies" data={movies} type="movies" />
-          )}
-          {shows && shows.length > 0 && (
-            <Section title="TV Shows" data={shows} type="shows" />
-          )}
-        </>
-      )}
-    </Container>
+    <>
+      <Helmet title="Search | Naflix" />
+      <Container>
+        <div>
+          <Form onSubmit={onSubmitForm}>
+            <Input
+              type="text"
+              value={term}
+              onChange={onChangeInput}
+              placeholder="Search by term"
+            />
+          </Form>
+        </div>
+        {loading ? (
+          <Message message="📡 Loading" />
+        ) : (
+          <>
+            {movies && movies.length > 0 && (
+              <Section title="Movies" data={movies} type="movies" />
+            )}
+            {shows && shows.length > 0 && (
+              <Section title="TV Shows" data={shows} type="shows" />
+            )}
+          </>
+        )}
+      </Container>
+    </>
   );
 });
 

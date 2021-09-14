@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useReducer } from "react";
+import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { movieApi } from "../api";
 import Message from "../Components/Message";
@@ -73,23 +74,32 @@ const Movies = memo(() => {
     getData();
   }, []);
 
-  return state.loading ? (
-    <Message message="📡 Loading" />
-  ) : (
-    <Container>
-      {state.topRated && state.topRated.length > 0 && (
-        <Section title="Top Rated" data={state.topRated} type="movies" />
+  return (
+    <>
+      <Helmet title="Movies | Naflix" />
+      {state.loading ? (
+        <Message message="📡 Loading" />
+      ) : (
+        <Container>
+          {state.topRated && state.topRated.length > 0 && (
+            <Section title="Top Rated" data={state.topRated} type="movies" />
+          )}
+          {state.nowPlaying && state.nowPlaying.length > 0 && (
+            <Section
+              title="Now Playing"
+              data={state.nowPlaying}
+              type="movies"
+            />
+          )}
+          {state.upcoming && state.upcoming.length > 0 && (
+            <Section title="Upcoming" data={state.upcoming} type="movies" />
+          )}
+          {state.popular && state.popular.length > 0 && (
+            <Section title="Popular" data={state.popular} type="movies" />
+          )}
+        </Container>
       )}
-      {state.nowPlaying && state.nowPlaying.length > 0 && (
-        <Section title="Now Playing" data={state.nowPlaying} type="movies" />
-      )}
-      {state.upcoming && state.upcoming.length > 0 && (
-        <Section title="Upcoming" data={state.upcoming} type="movies" />
-      )}
-      {state.popular && state.popular.length > 0 && (
-        <Section title="Popular" data={state.popular} type="movies" />
-      )}
-    </Container>
+    </>
   );
 });
 
