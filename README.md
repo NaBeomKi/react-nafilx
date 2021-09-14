@@ -11,5 +11,6 @@ Build a movie discovery app using React
 - React Router Dom
 - Styled Components
 - TMDB Api
+- Netlify
 
 [Visit now!](https://ki-react-naflix.netlify.app/)
